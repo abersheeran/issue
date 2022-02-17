@@ -1,0 +1,17 @@
+[project]
+name = "issue"
+version = "0.1.0"
+description = "Filter logs by name. Allow Unix shell style wildcards."
+authors = [
+    {name = "abersheeran", email = "me@abersheeran.com"},
+]
+dependencies = []
+requires-python = ">=3.7"
+license = {text = "Apache2.0"}
+
+[project.urls]
+homepage = "https://github.com/abersheeran/issue"
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
