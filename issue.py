@@ -3,10 +3,11 @@ import logging
 import fnmatch
 
 
-class IssueFilter(logging.Filter):
+class IssueFilter(object):
     """
     Filter logs by name. Allow Unix shell style wildcards.
 
+    ```text
     +----------+----------------------------------+
     | Pattern  |              Meaning             |
     +----------+----------------------------------+
@@ -15,13 +16,13 @@ class IssueFilter(logging.Filter):
     | [seq]    | matches any character in seq     |
     | [!seq]   | matches any character not in seq |
     +----------+----------------------------------+
+    ```
     """
 
-    def __init__(self) -> None:
-        super().__init__("")
-
-    def filter(self, record: logging.LogRecord):
+    def filter(self, record: logging.LogRecord) -> int:
         return fnmatch.fnmatchcase(record.name, os.environ.get("ISSUE", "*"))
+
+    __call__ = filter  # Filter also can be a callable object
 
 
 if __name__ == "__main__":
